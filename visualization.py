@@ -1,11 +1,11 @@
+from collections import deque
 from time import sleep
 
 import matplotlib.pyplot as plt
-from collections import deque
-import random
+
 from youtube import sub_count
 
-page_url = "https://www.youtube.com/@Fireship"
+page_url = "https://www.youtube.com/@Sanjay-gy6ew"
 
 # MAX NO. OF POINTS TO STORE
 que = deque(maxlen=40)

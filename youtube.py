@@ -10,15 +10,23 @@ def sub_count( page_url ) -> int :
 
     strPage = str(page.content)
 
-    result = re.findall("\"simpleText\":\"[0-9]*[a-zA-Z]+ ?subscribers\"", strPage)
+    result = re.findall("\"content\":\"[0-9]+.?[0-9]*[mMkK]? ?subscribers?\"", strPage)
+
+    if not result:
+        return 0
 
     subscribers = str(result[0])
 
-    count = str(re.findall("[0-9]+[a-zA-Z]", subscribers)[0])
+    result = re.findall("[0-9]+.?[0-9]*[mMkK]?", subscribers)
+
+    if not result:
+        return 0
+
+    count = str(result[0])
 
     length = len(count)
 
-    num = int(str(re.findall("[0-9]+", count)[0]))
+    num = float(str(re.findall("[0-9]+.?[0-9]*", count)[0]))
 
     if count[length - 1] == 'k' or count[length - 1] == 'K':
         num *= 1000
@@ -27,7 +35,7 @@ def sub_count( page_url ) -> int :
     elif count[length - 1] == 'b' or count[length - 1] == 'B':
         num *= 1000000000
 
-    return num
+    return int(num)
 
 if __name__ == "__main__":
     page_url = "https://www.youtube.com/@Fireship"
