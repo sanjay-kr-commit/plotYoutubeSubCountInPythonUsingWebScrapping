@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from youtube import sub_count
 
 page_url = "https://www.youtube.com/@Sanjay-gy6ew"
+delay = 1
 
 # MAX NO. OF POINTS TO STORE
 que = deque(maxlen=40)
@@ -31,4 +32,4 @@ while True:
     plt.draw()
     plt.pause(0.1)
     plt.clf()
-    sleep(1)
+    sleep(delay)
